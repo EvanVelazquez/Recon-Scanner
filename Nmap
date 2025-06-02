@@ -1,0 +1,13 @@
+echo "Enter an IP to scan or a CIDR range to scan (ex: 192.168.0.0/24 or 192.16$
+read hostnet
+echo "---- Initiating scan on $hostnet -----\n"
+> iplist.txt
+> portlist.txt
+sudo nping --icmp -c 3 --rate 50 $hostnet | grep "RCVD" | grep -v "unreachable"$
+echo "\nIP Scan complete.\n"
+echo "----- IPs detected: -----\n\n$(cat iplist.txt)\n"
+echo "----- Initiating port scan -----\n"
+sudo nmap -sS --top-ports 25 -iL iplist.txt > portlist.txt
+echo "\nPort scan complete.\n"
+echo "----- Open Port Report: -----\n"
+grep -E "report|open" portlist.txt
