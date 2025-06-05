@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Enter an IP to scan or a CIDR range to scan (ex: 192.168.0.0/24 or 192.16$
+echo "Enter an IP to scan or a CIDR range to scan (ex: 192.168.1.1)
 read hostnet
 echo "---- Initiating scan on $hostnet -----\n"
 > iplist.txt
